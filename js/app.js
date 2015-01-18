@@ -1,5 +1,6 @@
 function update(e){
   var val = e.getValue();
+  chrome.storage.local.set({'editor.content': JSON.stringify(val)});
   setOutput(val);
 }
 
@@ -61,14 +62,27 @@ marked.setOptions({
   }
 });
 
-var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
-  mode: 'gfm',
-  lineNumbers: true,
-  matchBrackets: true,
-  lineWrapping: true,
-  theme: 'default',
+chrome.storage.local.get(null, function(items){
+  if(items.hasOwnProperty('editor.content')) {
+    content = JSON.parse(items['editor.content']);
+    editor = CodeMirror(document.body, {
+      value: content,
+      mode: 'gfm',
+      lineNumbers: true,
+      matchBrackets: true,
+      lineWrapping: true,
+      theme: 'default'
+    });
+  } else {
+    editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+      mode: 'gfm',
+      lineNumbers: true,
+      matchBrackets: true,
+      lineWrapping: true,
+      theme: 'default',
+    });
+  }
+  update(editor);
+  editor.on('change', update);
+  editor.focus();
 });
-
-update(editor);
-editor.on('change', update);
-editor.focus();

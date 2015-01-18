@@ -12,7 +12,8 @@ Yet another Chrome Markdown Editor.
 
 ## Installation
 
-* Markdown Editor: <https://chrome.google.com/webstore/detail/ekdcaddpmiodcipjfmffhhefijpdckaf>
+* App Version: <https://chrome.google.com/webstore/detail/dpibenlpmppnjcjfpcdgfomalnejildm>
+* Extension Version: <https://chrome.google.com/webstore/detail/ekdcaddpmiodcipjfmffhhefijpdckaf>
 
 ## Components
 
