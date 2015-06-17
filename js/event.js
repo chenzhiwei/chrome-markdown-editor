@@ -1,5 +1,5 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
-  chrome.tabs.query({url: 'chrome-extension://ekdcaddpmiodcipjfmffhhefijpdckaf/index.html'}, function(tabs){
+  chrome.tabs.query({url: chrome.extension.getURL('index.html')}, function(tabs){
     if(tabs.length > 0) {
       // The extension was already opened in browser, make it active
       chrome.tabs.update(tabs[0].id, {active: true});
