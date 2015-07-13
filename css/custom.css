@@ -21,6 +21,7 @@
 }
 
 #out{
+  -webkit-user-select: initial;
   position: fixed;
   top: 0;
   right: 0;
