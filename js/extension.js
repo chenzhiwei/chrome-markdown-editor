@@ -80,7 +80,6 @@ document.addEventListener('drop', function(e){
 
 document.getElementById('print').addEventListener('click', function(){
   var printContents = document.getElementById('out').innerHTML;
-  var originalContents = document.body.innerHTML;
 
   document.body.innerHTML = printContents;
 
@@ -97,7 +96,7 @@ marked.setOptions({
 });
 
 var URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
-navigator.saveBlob = navigator.saveBlob || navigator.msSaveBlob || navigator.mozSaveBlob || navigator.webkitSaveBlob;
+navigator.saveBlob = navigator.saveBlob || navigator.webkitSaveBlob || navigator.mozSaveBlob || navigator.msSaveBlob;
 window.saveAs = window.saveAs || window.webkitSaveAs || window.mozSaveAs || window.msSaveAs;
 
 var editor;
