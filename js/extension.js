@@ -78,6 +78,17 @@ document.addEventListener('drop', function(e){
   theReader.readAsText(theFile);
 }, false);
 
+document.getElementById('print').addEventListener('click', function(){
+  var printContents = document.getElementById('out').innerHTML;
+  var originalContents = document.body.innerHTML;
+
+  document.body.innerHTML = printContents;
+
+  window.print();
+
+  window.location.reload();
+});
+
 // marked set option
 marked.setOptions({
   highlight: function(code) {

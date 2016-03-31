@@ -110,3 +110,21 @@ img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 table { border-collapse: collapse; border-spacing: 0; }
 td, th { vertical-align: top; padding: 4px 10px; border: 1px solid #bbb; }
 tr:nth-child(even) td, tr:nth-child(even) th { background: #eee; }
+
+#print {
+    position: fixed;
+    z-index: 2;
+    background: #ff4081 url("../icon/print.png") no-repeat center;
+    background-size: 24px 24px;
+    bottom: 32px;
+    right: 32px;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.3);
+    cursor: pointer;
+    display: inline-block;
+    height: 56px;
+    width: 56px;
+    outline: none;
+    text-align: center;
+}

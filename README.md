@@ -7,12 +7,12 @@ Yet another Chrome Markdown Editor.
 * Save your data at real time
 * Drag and drop a file to load it
 * Ctrl/Cmd + S to save the source file
+* Print to pdf with Chrome native printer
 * Support Github Flavored Markdown syntax
 * Support many languages highlight in editor and preview mode
 
 ## Installation
 
-* App Version: <https://chrome.google.com/webstore/detail/dpibenlpmppnjcjfpcdgfomalnejildm>
 * Extension Version: <https://chrome.google.com/webstore/detail/ekdcaddpmiodcipjfmffhhefijpdckaf>
 
 ## Components
