@@ -78,6 +78,7 @@ document.addEventListener('drop', function(e){
   theReader.readAsText(theFile);
 }, false);
 
+// Listen to print as pdf
 document.getElementById('print').addEventListener('click', function(){
   var printContents = document.getElementById('out').innerHTML;
 
@@ -123,3 +124,20 @@ if(storage.has('editor.content')) {
 update(editor);
 editor.on('change', update);
 editor.focus();
+
+// Synchronize scrollbars
+var previewDiv = document.getElementById("out");
+var editorDiv = editor.getScrollerElement();
+previewDiv.addEventListener("scroll", function(){
+  var info = editor.getScrollInfo();
+  var percent = previewDiv.scrollTop/(previewDiv.scrollHeight - previewDiv.clientHeight);
+  editor.scrollTo(0, percent * (info.height - info.clientHeight));
+  editorDiv.scrollTop = percent * (editorDiv.scrollHeight - editorDiv.clientHeight);
+});
+
+// Another way is to use editor.on('scroll', scroll);
+editorDiv.addEventListener("scroll", function(){
+  var info = editor.getScrollInfo();
+  var percent = info.top/(info.height - info.clientHeight);
+  previewDiv.scrollTop = percent * (previewDiv.scrollHeight - previewDiv.clientHeight);
+});
