@@ -3,10 +3,6 @@
      background-color: white;
  }
 
- .CodeMirror pre {
-     line-height: 16px;
- }
-
  #in {
      position: fixed;
      top: 40px;
@@ -30,7 +26,7 @@
  }
 
  .CodeMirror-scroll {
-     padding: 30px;
+     padding: 10px;
      box-sizing: border-box;
  }
 
@@ -126,35 +122,6 @@
      .navbutton {
         margin-left: 5px !important;
      }
- }
-
- .cm-header-1 {
-     font-size: 2em;
- }
-
- .cm-header-2 {
-     font-size: 1.75em;
- }
-
- .cm-header-3 {
-     font-size: 1.5em;
- }
-
- .cm-header-4 {
-     font-size: 1.3em;
- }
-
- .cm-header-5 {
-     font-size: 1.2em;
- }
-
- .cm-header-6 {
-     font-size: 1.15em;
- }
-
- .cm-quote {
-     color: #90a959;
-     font-style: italic;
  }
 
  .view #in {

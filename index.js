@@ -110,10 +110,10 @@ CodeMirrorSpellChecker({
 var editor = CodeMirror.fromTextArea(document.getElementById('code'), {
     mode: "spell-checker",
     backdrop: "gfm",
-    lineNumbers: false,
+    lineNumbers: true,
     matchBrackets: true,
     lineWrapping: true,
-    theme: 'base16-light',
+    theme: 'github-light',
     extraKeys: {
         "Enter": "newlineAndIndentContinueMarkdownList"
     }
