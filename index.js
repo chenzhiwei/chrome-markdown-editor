@@ -176,9 +176,15 @@ document.getElementById('browsersavebutton').addEventListener('click', function(
   saveInBrowser();
 });
 
+document.getElementById('printbutton').addEventListener('click', function(){
+  window.print();
+});
+
+/*
 document.getElementById('sharebutton').addEventListener('click', function(){
   updateHash();
 });
+*/
 
 document.getElementById('nightbutton').addEventListener('click', function(){
   toggleNightMode(this);
