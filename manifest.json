@@ -1,6 +1,6 @@
 {
-  "manifest_version": 2,
-  "version": "0.4.2",
+  "manifest_version": 3,
+  "version": "0.4.3",
   "name": "Markdown Editor",
   "short_name": "Markdown Editor",
   "description": "A Github Flavored Markdown Editor",
@@ -12,7 +12,9 @@
   },
   "background": {
     "persistent": false,
-    "scripts": ["event.js"]
+    "scripts": [
+      "event.js"
+    ]
   },
   "options_page": "options.html",
   "browser_action": {
@@ -21,5 +23,7 @@
       "38": "icon/markdown-editor-38.png"
     }
   },
-  "permissions": ["tabs"]
+  "permissions": [
+    "tabs"
+  ]
 }
