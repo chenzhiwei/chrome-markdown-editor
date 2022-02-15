@@ -11,12 +11,9 @@
     "128": "icon/markdown-editor-128.png"
   },
   "background": {
-    "persistent": false,
-    "scripts": [
-      "event.js"
-    ]
+    "service_worker": "event.js"
   },
-  "browser_action": {
+  "action": {
     "default_icon": {
       "19": "icon/markdown-editor-19.png",
       "38": "icon/markdown-editor-38.png"
