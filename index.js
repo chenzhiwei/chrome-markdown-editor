@@ -78,7 +78,7 @@ var render_tasklist = function(str){
 
 function setOutput(val) {
     val = val.replace(/<equation>((.*?\n)*?.*?)<\/equation>/ig, function(a, b) {
-        return '<img src="http://latex.codecogs.com/png.latex?' + encodeURIComponent(b) + '" />';
+        return '<img src="https://latex.codecogs.com/png.latex?' + encodeURIComponent(b) + '" />';
     });
 
     var out = document.getElementById('out');
