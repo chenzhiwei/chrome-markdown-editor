@@ -5,19 +5,23 @@ import 'codemirror/lib/codemirror.css';
 import 'codemirror/theme/darcula.css';
 import 'codemirror/mode/gfm/gfm.js';
 import { initialText } from '../../../Container/Hooks/InitialText';
+
+const editorContent = localStorage.getItem('editor.content') ?? initialText;
+
 const Editor = ({ className, setText }) => {
   return (
     <CodeMirror
       className={className}
-      value={initialText}
+      value={editorContent}
       options={{
         mode: 'gfm',
         theme: 'darcula',
         lineNumbers: true,
-        lineWrapping: true
+        lineWrapping: true,
       }}
       onChange={(editor, data, value) => {
-        setText(value);
+        localStorage.setItem('editor.content', value);
+        //setText(value);
       }}
     />
   );
