@@ -1,0 +1,2 @@
+(this.webpackJsonpmd2pdf=this.webpackJsonpmd2pdf||[]).push([[4],{286:function(e,t,r){"use strict";r.r(t);var n=r(0),a=r.n(n),h=r(45),c=r.n(h),i=r(98),o=r.n(i);r(285);const s=(e,t)=>{if(t&&o.a.getLanguage(t))try{return o.a.highlight(t,e).value}catch(r){console.error(r)}try{return o.a.highlightAuto(e).value}catch(r){console.error(r)}return""};t.default=e=>{let{source:t,children:r}=e;return a.a.createElement(c.a,{source:t,options:{highlight:s,html:!0,linkify:!0,breaks:!0}},r)}}}]);
+//# sourceMappingURL=4.b4feb47a.chunk.js.map
