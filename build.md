@@ -21,4 +21,11 @@
     clear the function T(e, t){}
     ```
 
-4. The `build` directory is the extension directory
+4. Update CSS styles
+
+    ```
+    vim build/static/css/main.6a18af69.chunk.css
+    #root,body,html{height:100%;font-size:100%;}
+    ```
+
+5. The `build` directory is the extension directory
