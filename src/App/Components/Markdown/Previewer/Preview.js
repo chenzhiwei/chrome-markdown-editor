@@ -24,7 +24,7 @@ export default ({ source, children }) => {
   return (
       <Markdown
         source={source}
-        options={{ highlight, html: true, linkify: true }}
+        options={{ highlight, html: true, linkify: true, breaks: true }}
       >
         {children}
       </Markdown>

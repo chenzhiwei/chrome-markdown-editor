@@ -22,25 +22,15 @@ const Header = ({ className }) => {
   };
   return (
     <header className={className + " no-print"}>
-      <p className="project"> md2pdf </p>
-      <iframe
-        title="github-button"
-        className="project"
-        style={{ display: "block" }}
-        src="https://ghbtns.com/github-btn.html?user=realdennis&repo=md2pdf&type=star&count=true"
-        frameBorder="0"
-        scrolling="0"
-        width="100px"
-        height="20px"
-      />
+      <p className="project"> Markdown Editor </p>
 
       <div className="menu">
         <UploadButton className="button upload" />
         <p className="button download" onClick={onTransfrom}>
           <span role="img" aria-label="download">
-            🎉
+            🖨️
           </span>
-          <span>Transform</span>
+          <span>Print as PDF</span>
         </p>
       </div>
       {/* <span className="author">Powered by @realdennis</span> */}

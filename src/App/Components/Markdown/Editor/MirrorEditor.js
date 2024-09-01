@@ -21,7 +21,7 @@ const Editor = ({ className, setText }) => {
       }}
       onChange={(editor, data, value) => {
         localStorage.setItem('editor.content', value);
-        //setText(value);
+        setText(value);
       }}
     />
   );

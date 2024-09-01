@@ -6,7 +6,7 @@ export default props => {
     const files = e.currentTarget.files;
     if (files.length > 0) {
       const reader = new FileReader();
-      reader.onload = loadEvent => { 
+      reader.onload = loadEvent => {
         if (loadEvent.target.readyState !== 2) return;
         if (loadEvent.target.error) {
           alert('Error while reading file');
@@ -43,7 +43,7 @@ export default props => {
       <span role="img" aria-label="upload">
         📁
       </span>
-      <span>Choose</span>
+      <span>Open File</span>
     </p>
   );
 };
