@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "version": "0.5.0",
+  "version": "0.5.1",
   "name": "Markdown Editor",
   "short_name": "Markdown Editor",
   "description": "A Github Flavored Markdown Editor",
@@ -19,5 +19,8 @@
       "19": "icons/markdown-editor-19.png",
       "38": "icons/markdown-editor-38.png"
     }
-  }
+  },
+  "permissions": [
+    "tabs"
+  ]
 }
