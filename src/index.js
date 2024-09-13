@@ -41,21 +41,18 @@ document.addEventListener('keydown', async (e) => {
         
         console.log('File saved successfully using showSaveFilePicker');
       } else {
-        throw new Error('showSaveFilePicker not supported');
+        // default save method
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'chrome_markdown_editor.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
       }
     } catch (err) {
-      console.warn('Error using showSaveFilePicker:', err);
       console.log('Falling back to default save method');
-      
-      // default save method
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'chrome_markdown_editor.md';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
     }
   }
 });
