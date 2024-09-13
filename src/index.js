@@ -21,7 +21,7 @@ window.addEventListener('dragover', (e) => e.preventDefault(), true);
 document.addEventListener('keydown', async (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key === 's') {
     e.preventDefault();
-    const content = initialText;
+    const content = localStorage.getItem('editor.content') ?? initialText;
     const blob = new Blob([content], { type: 'text/markdown' });
     
     try {
