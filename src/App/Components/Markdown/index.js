@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useProvided } from 'nonaction';
-import { TextContainer } from '../../Container';
+import { TextContainer, FileContainer } from '../../Container';
 import Previewer from './Previewer';
 import Editor from './Editor';
 import DragBar from './DragBar.js';
@@ -11,6 +11,7 @@ import uploadFile from '../../Lib/uploadFile.js';
 
 const Markdown = ({ className }) => {
   const [text, setText] = useProvided(TextContainer);
+  const { saveFile } = useProvided(FileContainer);
   const [isDrag, setDrag] = useState(false);
   const [startX, setStartX] = useState(0);
   const [width, setWidth] = useState(window.innerWidth / 2);
@@ -38,7 +39,7 @@ const Markdown = ({ className }) => {
         setWidth(pageX - startX);
       }}
     >
-      <Editor className="no-print" width={width} setText={setText} />
+      <Editor className="no-print" width={width} setText={setText} saveFile={saveFile} />
       <DragBar
         className="no-print"
         isDrag={isDrag}

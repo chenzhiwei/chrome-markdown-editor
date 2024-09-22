@@ -12,6 +12,7 @@
     "codemirror": "^5.65.0",
     "github-markdown-css": "3.0.1",
     "highlight.js": "9.15.8",
+    "idb-keyval": "^6.2.1",
     "nonaction": "0.0.5",
     "normalize.css": "8.0.1",
     "react": "^16.14.0",
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "PORT=3005 react-scripts --openssl-legacy-provider start",
     "build": "react-scripts --openssl-legacy-provider build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

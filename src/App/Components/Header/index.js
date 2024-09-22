@@ -1,7 +1,12 @@
 import React from "react";
+import { useProvided } from 'nonaction';
 import styled from "styled-components";
 import UploadButton from "./Upload.js";
+import { FileContainer } from "../../Container";
+import { initialText } from "../../Container/Hooks/InitialText";
+
 const Header = ({ className }) => {
+  const { openFile, saveFile, getFileName } = useProvided(FileContainer);
   const onTransfrom = () => {
     // get the file name
     let candidateTitle = "";
@@ -20,12 +25,27 @@ const Header = ({ className }) => {
     }
     window.print();
   };
+
+  React.useEffect(() => {
+    const handleSaveLocalFile = () => {
+      const content = localStorage.getItem('editor.content') ?? initialText;
+      saveFile(content, true); // focus on local file
+    };
+
+    document.addEventListener('save:localFile', handleSaveLocalFile);
+
+    return () => {
+      document.removeEventListener('save:localFile', handleSaveLocalFile);
+    };
+  }, [saveFile]);
+
   return (
     <header className={className + " no-print"}>
       <p className="project"> Markdown Editor </p>
 
       <div className="menu">
-        <UploadButton className="button upload" />
+        <p style={{ fontSize: '12px', color: 'gray', marginRight: '10px' }}>{getFileName()}</p>
+        <UploadButton className="button upload" openFile={openFile} />
         <p className="button download" onClick={onTransfrom}>
           <span role="img" aria-label="download">
             🖨️
