@@ -11,7 +11,7 @@ import uploadFile from '../../Lib/uploadFile.js';
 
 const Markdown = ({ className }) => {
   const [text, setText] = useProvided(TextContainer);
-  const { saveFile } = useProvided(FileContainer);
+  const { saveDebounceFile } = useProvided(FileContainer);
   const [isDrag, setDrag] = useState(false);
   const [startX, setStartX] = useState(0);
   const [width, setWidth] = useState(window.innerWidth / 2);
@@ -39,7 +39,7 @@ const Markdown = ({ className }) => {
         setWidth(pageX - startX);
       }}
     >
-      <Editor className="no-print" width={width} setText={setText} saveFile={saveFile} />
+      <Editor className="no-print" width={width} setText={setText} saveFile={saveDebounceFile} />
       <DragBar
         className="no-print"
         isDrag={isDrag}

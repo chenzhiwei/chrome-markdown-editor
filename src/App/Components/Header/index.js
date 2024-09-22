@@ -5,8 +5,10 @@ import UploadButton from "./Upload.js";
 import { FileContainer } from "../../Container";
 import { initialText } from "../../Container/Hooks/InitialText";
 
-const Header = ({ className }) => {
-  const { openFile, saveFile, getFileName } = useProvided(FileContainer);
+const Header = ({ className }) =>  {
+  const { openFile, saveFile, getFileStatus } = useProvided(FileContainer);
+  const [fileName, setFileName] = React.useState(null);
+  const [isFileSaved, setIsFileSaved] = React.useState(false);
   const onTransfrom = () => {
     // get the file name
     let candidateTitle = "";
@@ -26,7 +28,16 @@ const Header = ({ className }) => {
     window.print();
   };
 
-  React.useEffect(() => {
+  React.useEffect(() => { 
+    // 动态获取文件名
+    const fetchFileName = async () => {
+      const { name, isSaved } = await getFileStatus();
+      setFileName(name);
+      setIsFileSaved(isSaved);
+    };
+    fetchFileName();
+
+    // 保存文件
     const handleSaveLocalFile = () => {
       const content = localStorage.getItem('editor.content') ?? initialText;
       saveFile(content, true); // focus on local file
@@ -37,14 +48,14 @@ const Header = ({ className }) => {
     return () => {
       document.removeEventListener('save:localFile', handleSaveLocalFile);
     };
-  }, [saveFile]);
+  }, [saveFile, getFileStatus]);
 
   return (
     <header className={className + " no-print"}>
       <p className="project"> Markdown Editor </p>
 
       <div className="menu">
-        <p style={{ fontSize: '12px', color: 'gray', marginRight: '10px' }}>{getFileName()}</p>
+        <p style={{ fontSize: '12px', color: isFileSaved ? 'gray' : '#FF6666', marginRight: '10px' }}>{fileName}</p>
         <UploadButton className="button upload" openFile={openFile} />
         <p className="button download" onClick={onTransfrom}>
           <span role="img" aria-label="download">

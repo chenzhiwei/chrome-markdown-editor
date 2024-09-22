@@ -1,30 +1,28 @@
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useRef } from "react";
 import { get, set } from 'idb-keyval';
 
-const STORAGE_KEY = 'editor.fileHandle';
+const STORAGE_KEY = 'editor.FileHandle';
 
 const useFile = () => {
   const [fileHandle, setFileHandle] = useState(null);
+  const [isSaved, setIsSaved] = useState(true);
+  const saveTimeoutRef = useRef(null);
 
-  useEffect(() => {
-    const loadStoredFileHandle = async () => {
-      if (fileHandle) return; // 如果内存中已有文件句柄，就不需要从 IndexedDB 加载
+  const loadStoredFileHandle = useCallback(async () => {
+    if (fileHandle) return; // 如果内存中已有文件句柄，就不需要从 IndexedDB 加载
 
-      try {
-        const storedHandle = await get(STORAGE_KEY);
-        if (storedHandle) {
-          const permission = await storedHandle.requestPermission({ mode: 'readwrite' });
-          if (permission === 'granted') {
-            setFileHandle(storedHandle);
-          }
+    try {
+      const storedHandle = await get(STORAGE_KEY);
+      if (storedHandle) {
+        const permission = await storedHandle.requestPermission({ mode: 'readwrite' });
+        if (permission === 'granted') {
+          setFileHandle(storedHandle);
         }
-      } catch (error) {
-        console.error('Error accessing stored file handle:', error);
-        await set(STORAGE_KEY, null);
       }
-    };
-
-    loadStoredFileHandle();
+    } catch (error) {
+      console.error('Error accessing stored file handle:', error);
+      await set(STORAGE_KEY, null);
+    }
   }, [fileHandle]);
 
   const openFile = useCallback(async () => {
@@ -99,17 +97,34 @@ const useFile = () => {
       const writable = await handle.createWritable();
       await writable.write(content);
       await writable.close();
+      setIsSaved(true);
       console.log('File saved successfully');
     } catch (error) {
+      setIsSaved(false);
       console.error('Error saving file:', error);
     }
   }, [fileHandle]);
 
-  const getFileName = useCallback(() => {
-    return fileHandle ? fileHandle.name : null;
-  }, [fileHandle]);
+  const saveDebounceFile = useCallback(async (content, isFocusSaveFile = false) => {
+    clearTimeout(saveTimeoutRef.current);
 
-  return { openFile, saveFile, getFileName };
+    saveTimeoutRef.current = setTimeout(async () => {
+      await saveFile(content, isFocusSaveFile);
+      console.log('debounceSaveDone', saveTimeoutRef.current);
+    }, 1000);
+  }, [saveFile]);
+
+  const getFileStatus = useCallback(async () => {
+    await loadStoredFileHandle();
+    const name = fileHandle ? fileHandle.name : null;
+    console.log('loadStoredFileHandle',  name);
+    return {
+      name,
+      isSaved: isSaved,
+    };
+  }, [fileHandle, loadStoredFileHandle, isSaved]);
+
+  return { openFile, saveFile, saveDebounceFile, getFileStatus, loadStoredFileHandle };
 };
 
 export default useFile;
