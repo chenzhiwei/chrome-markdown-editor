@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 // import EditArea from './EditArea.js';
 import Mirror from './MirrorEditor.js';
-const Editor = ({ className,  setText, width }) => {
+const Editor = ({ className,  setText, saveFile, width }) => {
   return (
     <div style={{ width }} className={className}>
-      <Mirror setText={setText}/>
+      <Mirror setText={setText} saveFile={saveFile}/>
     </div>
   );
 };

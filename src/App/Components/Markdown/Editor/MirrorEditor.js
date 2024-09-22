@@ -8,7 +8,7 @@ import { initialText } from '../../../Container/Hooks/InitialText';
 
 const editorContent = localStorage.getItem('editor.content') ?? initialText;
 
-const Editor = ({ className, setText }) => {
+const Editor = ({ className, setText, saveFile }) => {
   return (
     <CodeMirror
       className={className}
@@ -22,6 +22,7 @@ const Editor = ({ className, setText }) => {
       onChange={(editor, data, value) => {
         localStorage.setItem('editor.content', value);
         setText(value);
+        saveFile(value);
       }}
     />
   );

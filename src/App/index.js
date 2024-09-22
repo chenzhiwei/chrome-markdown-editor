@@ -2,11 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { Header, Markdown } from './Components';
 import { Provider } from 'nonaction';
-import { TextContainer } from './Container';
+import { TextContainer, FileContainer } from './Container';
 const App = ({ className }) => {
   return (
     <div className={className} id="md2pdf-app">
-      <Provider inject={[TextContainer]}>
+      <Provider inject={[TextContainer, FileContainer]}>
         <Header />
         <Markdown />
       </Provider>

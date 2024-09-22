@@ -2,48 +2,39 @@ import React from 'react';
 import uploadFile from '../../Lib/uploadFile.js';
 
 export default props => {
-  const onChange = e => {
-    const files = e.currentTarget.files;
-    if (files.length > 0) {
-      const reader = new FileReader();
-      reader.onload = loadEvent => {
-        if (loadEvent.target.readyState !== 2) return;
-        if (loadEvent.target.error) {
-          alert('Error while reading file');
-          return;
-        }
-        const content = loadEvent.target.result;
-        uploadFile(content);
-      };
-      reader.readAsText(e.target.files[0]);
+
+  const { openFile, className } = props
+
+  const onChange = async () => {
+    
+    try {
+      const fileContext = await openFile();
+
+      if (fileContext) {
+        // 保存文件内容
+        uploadFile(fileContext);
+        
+        console.log('File opened and saved successfully');
+      }
+    } catch (error) {
+      console.error('Error reading or saving file:', error);
     }
   };
+
   return (
-    <p {...props} style={{ position: 'relative' }}>
-      <input
-        id="mdFile"
-        type="file"
-        style={{ display: 'none' }}
-        onChange={onChange}
-        accept=".md"
-      />
-      <label
-        htmlFor="mdFile"
-        style={{
-          position: 'absolute',
-          opacity: 0,
-          top: 0,
-          left: 0,
-          right: 0,
-          bottom: 0,
-          zIndex: 2,
-          cursor: 'pointer'
-        }}
-      />
-      <span role="img" aria-label="upload">
-        📁
-      </span>
-      <span>Open File</span>
+    <p className={className} style={{ position: 'relative' }}>
+      <button onClick={onChange} style={{
+        background: 'none',
+        border: 'none',
+        padding: 0,
+        font: 'inherit',
+        cursor: 'pointer'
+      }}>
+        <span role="img" aria-label="upload">
+          📁
+        </span>
+        <span>Open File</span>
+      </button>
     </p>
   );
 };
