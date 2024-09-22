@@ -10,8 +10,8 @@
 2. Switch to `master` branch and run following commands:
 
     ```
-    cp -r icons/* build/icons/
-    cp -r manifest.json worker.js build/
+    cp -r chrome-extension-static/icons/* build/icons/
+    cp -r chrome-extension-static/{manifest.json,worker.js} build/
     ```
 
 3. Remove the service worker registration:
